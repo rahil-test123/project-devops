@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: devops-api
+  template:
+    metadata:
+      labels:
+        app: devops-api
+    spec:
+      containers:
+        - name: devops-api
+          image: rahil0212/devops-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
