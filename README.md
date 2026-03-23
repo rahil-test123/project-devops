@@ -49,5 +49,7 @@ docker run -p 5000:5000 devops-api
  /health
 
  /info
-CI/CD pipeline updated
+CI/CD pipeline updated 
+
+test docker push
 
