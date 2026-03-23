@@ -12,22 +12,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.9"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
-          cd app
-          pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r app/requirements.txt
 
       - name: Run tests
         run: |
           cd app
-          pytest
+          pytest test_app.py
 
       - name: Build Docker image
+        run: docker build -t devops-app .
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
         run: |
-          cd app
-          docker build -t devops-api .
+          cd terraform
+          terraform init
+
+      - name: Terraform Validate
+        run: |
+          cd terraform
+          terraform validate
