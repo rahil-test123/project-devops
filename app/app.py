@@ -271,7 +271,7 @@ def health():
 def info():
     return jsonify({
         "project": "SoundWave DevOps Cloud Project",
-        "version": "2.0",
+        "version": "2.1-demo",
         "frontend": True,
         "backend": "Flask",
         "features": [
